@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PriceScope — AI Product Intelligence & Price Comparison</title>
+  <meta name="description" content="AI-powered product price comparison across Amazon, Flipkart, and more." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <a href="#" class="logo">
+        <span class="logo-icon">⚡</span>
+        <span class="logo-text">PriceScope</span>
+      </a>
+
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+    <div class="hero-glow glow-3"></div>
+    <div class="grid-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-tag"><span class="tag-dot"></span>Real-Time Intelligence</div>
+      <h1 class="hero-title">Find the <span class="gradient-text">Best Price</span><br />for Any Product</h1>
+      <p class="hero-subtitle">Type a product name — our AI identifies, normalizes, and compares prices<br />across
+        Amazon, Flipkart, and leading platforms instantly.</p>
+
+      <div class="search-card" id="search-card">
+
+        <div id="search-body-name">
+          <div class="input-group">
+            <span class="input-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </span>
+            <input type="text" id="product-input" class="product-input"
+              placeholder="e.g. iPhone 15 Pro 256GB Natural Titanium" autocomplete="off" onkeydown="handleKey(event)"
+              oninput="handleInput()" />
+            <button class="clear-btn" onclick="clearInput()">✕</button>
+          </div>
+          <div class="suggestions-box" id="suggestions-box"></div>
+          <button class="search-btn" id="search-btn" onclick="searchProduct()">
+            <span class="btn-text">Compare Prices</span><span class="btn-arrow">→</span>
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </header>
+
+  <main class="results-section" id="results-section">
+    <div class="loading-state hidden" id="loading-state">
+      <div class="loader-ring"></div>
+      <p class="loader-text">Scanning platforms for the best deal…</p>
+      <div class="loader-steps">
+      </div>
+    </div>
+
+    <div class="results-inner hidden" id="results-inner">
+      <div class="product-header">
+        <div class="product-id-chip" id="product-id-chip"></div>
+        <h2 class="product-title" id="result-product-name"></h2>
+        <div class="meta-row" id="meta-row"></div>
+      </div>
+
+      <div class="best-deal-banner" id="best-deal-banner">
+        <div class="deal-badge">🏆 Best Deal</div>
+        <div class="deal-info">
+          <span class="deal-site" id="deal-site"></span>
+          <span class="deal-price" id="deal-price"></span>
+        </div>
+        <a class="deal-cta" id="deal-cta" href="#" target="_blank" rel="noopener">Shop Now →</a>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-card"><span class="stat-label">Price Range</span><span class="stat-value"
+            id="stat-range"></span></div>
+        <div class="stat-card"><span class="stat-label">Platforms Found</span><span class="stat-value"
+            id="stat-count"></span></div>
+        <div class="stat-card"><span class="stat-label">Confidence</span><span class="stat-value"
+            id="stat-confidence"></span></div>
+        <div class="stat-card"><span class="stat-label">Identified From</span><span class="stat-value"
+            id="stat-source"></span></div>
+      </div>
+
+      <div class="results-table-wrap">
+        <div class="table-header-row">
+          <h3 class="section-title">Price Comparison</h3>
+          <div class="sort-controls">
+            <button class="sort-btn active" onclick="sortResults('asc')" id="sort-asc">↑ Lowest First</button>
+            <button class="sort-btn" onclick="sortResults('desc')" id="sort-desc">↓ Highest First</button>
+          </div>
+        </div>
+        <div class="results-list" id="results-list"></div>
+      </div>
+
+      <div class="notes-card" id="notes-card">
+        <div class="notes-icon">📋</div>
+        <div class="notes-content">
+          <p class="notes-label">Notes</p>
+          <p class="notes-text" id="notes-text"></p>
+        </div>
+      </div>
+
+
+
+      <button class="search-again-btn" onclick="searchAgain()">← Search Another Product</button>
+    </div>
+
+    <div class="error-state hidden" id="error-state">
+      <div class="error-icon">⚠️</div>
+      <h3 class="error-title" id="error-title">Something went wrong</h3>
+      <p class="error-msg" id="error-msg"></p>
+      <button class="retry-btn" onclick="searchAgain()">Try Again</button>
+    </div>
+  </main>
+
+
+
+  <footer class="footer">
+    <p>⚡ PriceScope &mdash; AI Product Intelligence &nbsp;|&nbsp; Built with precision</p>
+    <p class="footer-sub">Prices are indicative. Always verify on the seller's website before purchasing.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
